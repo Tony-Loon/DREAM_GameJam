@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(InputReader))]
+[RequireComponent(typeof(ColliderReader))]
 //[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CharacterController))]
 public class PlayerStateMachine : StateMachine
@@ -11,6 +12,7 @@ public class PlayerStateMachine : StateMachine
     public float LookRotationDampFactor { get; private set; } = 10f;
     public Transform MainCamera { get; private set; }
     public InputReader InputReader { get; private set; }
+    public ColliderReader ColliderReader { get; private set; }
     //public Animator Animator { get; private set; }
     public CharacterController Controller { get; private set; }
 
@@ -19,6 +21,7 @@ public class PlayerStateMachine : StateMachine
         MainCamera = Camera.main.transform;
 
         InputReader = GetComponent<InputReader>();
+        ColliderReader = GetComponent<ColliderReader>();
         //Animator = GetComponent<Animator>();
         Controller = GetComponent<CharacterController>();
 
