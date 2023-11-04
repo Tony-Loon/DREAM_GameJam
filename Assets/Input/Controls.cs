@@ -50,7 +50,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""7f5ae896-a84b-475a-95db-2c662210f638"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""InvertVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
