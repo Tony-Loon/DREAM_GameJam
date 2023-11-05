@@ -10,9 +10,19 @@ public class ColliderReader : MonoBehaviour
     {
         IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
 
-        if (interactable != null)
+        if (interactable == null)
         {
-            curCollider = other;
+            IInspactable inspactable = other.gameObject.GetComponent<IInspactable>();
+            if (inspactable != null)
+            {
+                curCollider = other;
+            }
+        }
+        else
+        {
+            {
+                curCollider = other;
+            }
         }
     }
 
