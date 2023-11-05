@@ -17,7 +17,7 @@ public class PlayerInteractState : PlayerBaseState
         Collider curCollider = stateMachine.ColliderReader.getCurrentCollider();
         if (curCollider != null) {
             this.curCollider = curCollider;
-            curCollider?.gameObject.GetComponent<IInteractable>().OnInteractionStart();
+            curCollider?.gameObject.GetComponent<IInteractable>()?.OnInteractionStart();
             return;
         }
         LeaveInteractState();
@@ -27,7 +27,7 @@ public class PlayerInteractState : PlayerBaseState
     {
         // on state exit
         stateMachine.InputReader.OnInteractionPerformed -= LeaveInteractState;
-        curCollider?.gameObject.GetComponent<IInteractable>().OnInteractionStop();
+        curCollider?.gameObject.GetComponent<IInteractable>()?.OnInteractionStop();
         curCollider = null;
     }
 
