@@ -7,9 +7,9 @@ using UnityEngine;
 public class PlayerStateMachine : StateMachine
 {
     public Vector3 Velocity;
-    public float MovementSpeed { get; private set; } = 3f;
-    public float JumpForce { get; private set; } = 5f;
-    public float LookRotationDampFactor { get; private set; } = 10f;
+    public float MovementSpeed  = 2.5f;
+    public float JumpForce  = 5f;
+    public float LookRotationDampFactor  = 10f;
     public Transform MainCamera { get; private set; }
     public InputReader InputReader { get; private set; }
     public ColliderReader ColliderReader { get; private set; }
