@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour, IInteractable
 {
-    [SerializeField] Canvas canvas;
+    [SerializeField] protected Canvas canvas;
 
     private void OnTriggerEnter(Collider other)
     {

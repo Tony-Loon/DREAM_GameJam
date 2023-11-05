@@ -13,6 +13,13 @@ public class PlayerInteractState : PlayerBaseState
         Collider curCollider = stateMachine.ColliderReader.getCurrentCollider();
         if (curCollider != null) {
             this.curCollider = curCollider;
+            if (curCollider.gameObject.GetComponent<ICarry>() != null)
+            {
+                Exit();
+                stateMachine.SwitchState(new PlayerCarryState(stateMachine));
+                Debug.Log("Has ICarry!");
+                return;
+            }
             curCollider?.gameObject.GetComponent<IInteractable>().OnInteractionStart();
             return;
         }
