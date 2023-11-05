@@ -18,6 +18,19 @@ public class PlayerInteractState : PlayerBaseState
         if (curCollider != null) {
             this.curCollider = curCollider;
             curCollider?.gameObject.GetComponent<IInteractable>()?.OnInteractionStart();
+            if (curCollider.gameObject.GetComponent<ICarry>() != null)
+            {
+                Exit();
+                stateMachine.SwitchState(new PlayerCarryState(stateMachine));
+                Debug.Log("Has ICarry!");
+                return;
+            }
+            if (curCollider.gameObject.GetComponent<InteractableSwitch>() != null)
+            {
+                Exit();
+                stateMachine.SwitchState(new PlayerMoveState(stateMachine));
+                return;
+            }
             return;
         }
         LeaveInteractState();

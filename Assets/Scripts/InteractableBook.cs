@@ -8,9 +8,8 @@ public class InteractableBook : Interactable, ICarry
 {
     public TextMeshProUGUI Tooltip;
     private GameObject _hands;
-    public GameObject Book;
-    public int _pickedUp = 0;
-    public bool _blockingVent = true;
+    public GameObject Book, PopUp;
+    public bool _blockingVent = true, _pickedUp = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -41,30 +40,34 @@ public class InteractableBook : Interactable, ICarry
         Book.GetComponent<Collider>().enabled = false;
         Book.GetComponent<Rigidbody>().useGravity = false; 
         _hands = GameObject.Find("hands_Cylinder.045");
-        if (_pickedUp < 2)
+        
+        if (!_pickedUp)
         {
             Debug.Log("Picked up Book!");
-            _pickedUp++;
+            _pickedUp= true;
         }
     }
     public void Carrying() {
-        if (_pickedUp < 2)
+        if(_pickedUp)
         {
-            Book.transform.position = _hands.transform.position + new Vector3(0,1,0);
+            Book.transform.position = _hands.transform.position + new Vector3(0, 1, 0);
             Book.transform.rotation = _hands.transform.rotation;
         }
     }
 
-    public void LayDown() {
+    public void LayDown()
+    {
         Tooltip.text = "Pick up";
         Book.GetComponent<Collider>().enabled = true;
-        Book.GetComponent<Rigidbody>().useGravity = true; 
-        if (_pickedUp <= 2)
+        Book.GetComponent<Rigidbody>().useGravity = true;
+        if (_pickedUp)
         {
             Debug.Log("Dropped Book!");
-            _pickedUp = 0;
+            _pickedUp = false;
+        }
+        if (!_blockingVent)
+        {
+            PopUp.SetActive(false);
         }
     }
-
-
 }

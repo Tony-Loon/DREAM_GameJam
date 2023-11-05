@@ -6,6 +6,7 @@ public class InteractableRadio : Interactable
 {
     public AudioClip SFX;
     private AudioSource _audioSource;
+    public GameObject PopUp;
 
     public void Start()
     {
@@ -21,6 +22,7 @@ public class InteractableRadio : Interactable
         Debug.Log("Turned Radio on!");
         if (SFX)  { _audioSource.PlayOneShot(SFX); }
         _audioSource.Play();
+        PopUp.SetActive(false);
     }
 
     public override void OnInteractionStop()

@@ -54,15 +54,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _NoiseIntensity: 0.5
+    - _NoiseIntensity: 0.417
     - _NoiseScale: 218.3
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScrollingIntensity: 1
     - _ScrollingLines: 10
     - _ScrollingSpeed: 0.75
-    - _ScrollingThickness: 0.15
+    - _ScrollingThickness: 0.1
     m_Colors:
-    - _Color: {r: 0.6156863, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.7877358, g: 1, b: 0.9505, a: 1}
     - _NoiseSpeed: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -91,6 +91,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: {x: 0, y: 0, z: 0}
+  MovementSpeed: 2.5
+  JumpForce: 5
+  LookRotationDampFactor: 10
   Animator: {fileID: 5090690496526846454}
 --- !u!114 &2702710669686929257
 MonoBehaviour:
@@ -300,6 +303,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ef7ff50f26cb94650912f3b7a20323b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5087763480439556008, guid: ef7ff50f26cb94650912f3b7a20323b0, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ef7ff50f26cb94650912f3b7a20323b0, type: 3}
       propertyPath: m_Name
