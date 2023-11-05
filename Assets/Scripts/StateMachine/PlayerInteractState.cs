@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerInteractState : PlayerBaseState
 {
+    private readonly int MoveSpeedHash = Animator.StringToHash("MoveSpeed");
+    private readonly int MoveBlendTreeHash = Animator.StringToHash("MoveBlendTree");
+    private const float AnimationDampTime = 0.1f;
+    private const float CrossFadeDuration = 0.1f;
     public PlayerInteractState(PlayerStateMachine stateMachine) : base(stateMachine) { }
     private Collider curCollider;
     public override void Enter()
@@ -38,7 +42,7 @@ public class PlayerInteractState : PlayerBaseState
     {
         // Add interactive functionality here
         curCollider?.gameObject.GetComponent<IInteractable>().Interaction();
-
+        stateMachine.Animator.SetFloat(MoveSpeedHash, 0f, AnimationDampTime, Time.deltaTime);
     }
 
     private void LeaveInteractState()
