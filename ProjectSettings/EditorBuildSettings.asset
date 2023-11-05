@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 7a83a5be2567d384e93d5ecd46041b86
+  - enabled: 1
+    path: Assets/Scenes/Level_Jelly_Player_Test.unity
+    guid: 814788b0cd8efc7408ca1c87a1d8970f
   m_configObjects: {}
