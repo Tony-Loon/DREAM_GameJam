@@ -2,43 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteractState : PlayerBaseState
+public class PlayerInspectState : PlayerBaseState
 {
     private readonly int MoveSpeedHash = Animator.StringToHash("MoveSpeed");
     private readonly int MoveBlendTreeHash = Animator.StringToHash("MoveBlendTree");
     private const float AnimationDampTime = 0.1f;
     private const float CrossFadeDuration = 0.1f;
-    public PlayerInteractState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+    public PlayerInspectState(PlayerStateMachine stateMachine) : base(stateMachine) { }
     private Collider curCollider;
     public override void Enter()
     {
         // on state enter
-        stateMachine.InputReader.OnInteractionPerformed += LeaveInteractState;
+        stateMachine.InputReader.OnInteractionPerformed += LeaveInspectState;
         Collider curCollider = stateMachine.ColliderReader.getCurrentCollider();
         if (curCollider != null) {
             this.curCollider = curCollider;
-            curCollider?.gameObject.GetComponent<IInteractable>()?.OnInteractionStart();
+            curCollider?.gameObject.GetComponent<IInspactable>()?.OnInspectStart();
             return;
         }
-        LeaveInteractState();
+        LeaveInspectState();
     }
 
     public override void Exit()
     {
         // on state exit
-        stateMachine.InputReader.OnInteractionPerformed -= LeaveInteractState;
-        curCollider?.gameObject.GetComponent<IInteractable>()?.OnInteractionStop();
+        stateMachine.InputReader.OnInteractionPerformed -= LeaveInspectState;
+        curCollider?.gameObject.GetComponent<IInspactable>()?.OnInspectStop();
         curCollider = null;
     }
 
     public override void Tick()
     {
-        // Add interactive functionality here
-        curCollider?.gameObject.GetComponent<IInteractable>().Interaction();
         stateMachine.Animator.SetFloat(MoveSpeedHash, 0f, AnimationDampTime, Time.deltaTime);
     }
 
-    private void LeaveInteractState()
+    private void LeaveInspectState()
     {
         stateMachine.SwitchState(new PlayerMoveState(stateMachine));
     }
