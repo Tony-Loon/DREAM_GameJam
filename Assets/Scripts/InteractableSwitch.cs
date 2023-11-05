@@ -7,6 +7,7 @@ public class InteractableSwitch : Interactable
     [Header ("Lamps that turn on when power switch is enabled")]
     public List<Light> AllLights;
     public List<float> _intensities;
+    public Material LightBoxes;
     [Header ("SFX that play when power switch is enabled")]
     public List<AudioSource> SFXAudioSources;
     public bool PowerOn = false;
@@ -17,6 +18,7 @@ public class InteractableSwitch : Interactable
         for (int i = 0; i < AllLights.Count; i++)
         {
             _intensities.Add(AllLights[i].intensity);
+            AllLights[i].enabled = false;
         }
         TurnPowerOff();
     }
@@ -33,7 +35,10 @@ public class InteractableSwitch : Interactable
     public override void OnInteractionStart()
     {
         Debug.Log("Hold switch!");
-        foreach(AudioSource audio in SFXAudioSources)
+        LightBoxes.EnableKeyword("_EMISSION");
+        LightBoxes.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+        LightBoxes.SetColor("_EmissionColor", Color.yellow);
+        foreach (AudioSource audio in SFXAudioSources)
         {
             audio.PlayOneShot(audio.clip);
         }
@@ -66,6 +71,9 @@ public class InteractableSwitch : Interactable
     void TurnPowerOff()
     {
         Debug.Log("Lights off!");
+        LightBoxes.DisableKeyword("_EMISSION");
+        LightBoxes.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+        LightBoxes.SetColor("_EmissionColor", Color.black);
         for (int i = 0; i < AllLights.Count; i++)
         {
             AllLights[i].intensity = 0.0f;
