@@ -44,7 +44,16 @@ public class PlayerMoveState : PlayerBaseState
         stateMachine.SwitchState(new PlayerJumpState(stateMachine));
     }
 
-    private void SwitchToInteractState() {
-        stateMachine.SwitchState(new PlayerInteractState(stateMachine));
+    private void SwitchToInteractState()
+    {
+        if (stateMachine.ColliderReader.getCurrentCollider()?.GetComponent<IInteractable>() != null)
+        {
+            stateMachine.SwitchState(new PlayerInteractState(stateMachine));
+        }
+        else if (stateMachine.ColliderReader.getCurrentCollider()?.GetComponent<IInspactable>() != null)
+        {
+            stateMachine.SwitchState(new PlayerInspectState(stateMachine));
+        }
+
     }
 }
