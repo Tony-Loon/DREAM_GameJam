@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lightbulb (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8379293638816269797, guid: 866f1688d279f834e840d328939463b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -215,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2551280844441611794, guid: 866f1688d279f834e840d328939463b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.142
+      value: -0.162
       objectReference: {fileID: 0}
     - target: {fileID: 2551280844441611794, guid: 866f1688d279f834e840d328939463b5, type: 3}
       propertyPath: m_LocalPosition.z
