@@ -10,6 +10,11 @@ public class InteractableBook : Interactable, ICarry
     private GameObject _hands;
     public GameObject Book, PopUp;
     public bool _blockingVent = true, _pickedUp = false;
+    private Monitor_Order _order;
+    void Start()
+    {
+        _order = GameObject.Find("MonitorDisplay").GetComponent<Monitor_Order>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +25,7 @@ public class InteractableBook : Interactable, ICarry
         if (other.gameObject.name == "Vent")
         {
             Debug.Log("Vent still blocked ):");
+            _blockingVent = true;
         }
     }
 
@@ -31,7 +37,8 @@ public class InteractableBook : Interactable, ICarry
         }
         if (other.gameObject.name == "Vent")
         {
-            Debug.Log("Vent freeeee :3"); 
+            Debug.Log("Vent freeeee :3");
+            _blockingVent = false;
         }
     }
 
@@ -40,6 +47,7 @@ public class InteractableBook : Interactable, ICarry
         Book.GetComponent<Collider>().enabled = false;
         Book.GetComponent<Rigidbody>().useGravity = false; 
         _hands = GameObject.Find("hands_Cylinder.045");
+        Book.GetComponent<Rigidbody>().isKinematic = false; 
         
         if (!_pickedUp)
         {
@@ -67,7 +75,8 @@ public class InteractableBook : Interactable, ICarry
         }
         if (!_blockingVent)
         {
-            PopUp.SetActive(false);
+            _order._ventUnblocked = true;
+            _order.ClosePopUp(_order.Pop_Up2, 3, true);
         }
     }
 }

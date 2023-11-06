@@ -51,7 +51,7 @@ Material:
     - _ScrollingThickness: 0.1
     - _ShaderIntensity: 0.5
     m_Colors:
-    - _Color: {r: 0.7877358, g: 1, b: 0.95055556, a: 0}
+    - _Color: {r: 0.7877358, g: 1, b: 0.9505, a: 1}
     - _NoiseSpeed: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &501281571382891773

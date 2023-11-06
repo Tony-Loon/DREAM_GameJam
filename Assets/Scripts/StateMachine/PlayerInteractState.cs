@@ -25,7 +25,7 @@ public class PlayerInteractState : PlayerBaseState
                 Debug.Log("Has ICarry!");
                 return;
             }
-            if (curCollider.gameObject.GetComponent<InteractableSwitch>() != null)
+            if (curCollider.gameObject.GetComponent<InteractableSwitch>() != null || curCollider.gameObject.GetComponent<InteractableRadio>() != null)
             {
                 Exit();
                 stateMachine.SwitchState(new PlayerMoveState(stateMachine));

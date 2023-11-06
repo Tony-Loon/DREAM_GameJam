@@ -6,11 +6,12 @@ public class InteractableRadio : Interactable
 {
     public AudioClip SFX;
     private AudioSource _audioSource;
-    public GameObject PopUp;
+    private Monitor_Order _order;
 
     public void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        _order = GameObject.Find("MonitorDisplay").GetComponent<Monitor_Order>();
     }
 
     public override void Interaction()
@@ -22,7 +23,8 @@ public class InteractableRadio : Interactable
         Debug.Log("Turned Radio on!");
         if (SFX)  { _audioSource.PlayOneShot(SFX); }
         _audioSource.Play();
-        PopUp.SetActive(false);
+        _order._radioOn = true;
+        _order.ClosePopUp(_order.Pop_Up3, 3, true);
     }
 
     public override void OnInteractionStop()

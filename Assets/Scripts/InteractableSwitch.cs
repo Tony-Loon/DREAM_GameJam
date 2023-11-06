@@ -9,10 +9,10 @@ public class InteractableSwitch : Interactable
     [Header ("Lamps that turn on when power switch is enabled")]
     public List<Light> AllLights;
     public List<float> _intensities;
-    public Material LightBoxes, Noise;
+    public Material LightBoxes;
     [Header ("SFX that play when power switch is enabled")]
     public List<AudioSource> SFXAudioSources;
-    public List<GameObject> Monitor;
+    private Monitor_Order _order;
     public bool PowerOn = false;
     public float LightUpSpeed = 10.0f;
 
@@ -23,6 +23,7 @@ public class InteractableSwitch : Interactable
             _intensities.Add(AllLights[i].intensity);
         }
         TurnPowerOff();
+        _order = GameObject.Find("MonitorDisplay").GetComponent<Monitor_Order>();
     }
 
     public void Update()
@@ -36,31 +37,24 @@ public class InteractableSwitch : Interactable
 
     public override void OnInteractionStart()
     {
-        Debug.Log("Hold switch!");
-        LightBoxes.EnableKeyword("_EMISSION");
-        LightBoxes.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
-        LightBoxes.SetColor("_EmissionColor", new Color(0.749f,0.5852f,0.3003f,1f));
-        Noise.SetColor("_Color", new Color(0.7877358f, 1f, 0.9505f,1f));
-        Monitor[0].SetActive(false);
-        for (int i = 1; i < Monitor.Count; i++)
+        if (!PowerOn)
         {
-            if (i == 3)
-            {
-                Monitor[2].SetActive(false);
-            }
-            TurnDisplaysOn(Monitor[i], 1000*(i+1));
-        }
-        foreach (AudioSource audio in SFXAudioSources)
-        {
-            audio.PlayOneShot(audio.clip);
-        }
-        if(!PowerOn)
-        {
+            Debug.Log("POWER ON!");
             PowerOn = true;
+            _order.ActivateDisplays();
+            LightBoxes.EnableKeyword("_EMISSION");
+            LightBoxes.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+            LightBoxes.SetColor("_EmissionColor", new Color(0.749f,0.5852f,0.3003f,1f));
+            foreach (AudioSource audio in SFXAudioSources)
+            {
+                audio.PlayOneShot(audio.clip);
+            }
         }
-        else if(PowerOn) 
-        { 
+        else if(PowerOn)
+        {
+            Debug.Log("POWER OFF!");
             PowerOn = false;
+            _order.ShutDown();
         }
     }
 
@@ -91,12 +85,5 @@ public class InteractableSwitch : Interactable
         {
             AllLights[i].intensity = 0.0f;
         }
-        Noise.SetColor("_Color", new Color(1f, 1f, 1f, 1f));
-    }
-
-    private async void TurnDisplaysOn(GameObject obj, int delay)
-    {
-        await Task.Delay(delay);
-        obj.SetActive(true);
     }
 }

@@ -9,8 +9,13 @@ public class InteractableRoomba : Interactable, ICarry
     public TextMeshProUGUI Tooltip;
     private GameObject _hands;
     public GameObject  Roomba, PopUp;
+    public Monitor_Order _order;
     public bool _pickedUp = false;
 
+    void Start()
+    {
+        _order = GameObject.Find("MonitorDisplay").GetComponent<Monitor_Order>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -58,6 +63,7 @@ public class InteractableRoomba : Interactable, ICarry
             Debug.Log("Dropped Roomba!");
             _pickedUp = false;
         }
-        PopUp.SetActive(false);
+        _order._roombaFree = true;
+        _order.ClosePopUp(_order.Pop_Up1, 3, true);
     }
 }
