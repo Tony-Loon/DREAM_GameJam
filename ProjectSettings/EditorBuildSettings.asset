@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 7a83a5be2567d384e93d5ecd46041b86
   - enabled: 1
+    path: Assets/Scenes/StartingScene.unity
+    guid: 25f7811094778ce4aa7616f09aecfa6e
+  - enabled: 1
     path: Assets/Scenes/Level_Bennie.unity
     guid: 6bcf7152ab3394e6eac8b7478b822d23
   m_configObjects: {}

@@ -414,6 +414,7 @@ MonoBehaviour:
   Tooltip: {fileID: 1459561224724590453}
   Roomba: {fileID: 8558397205040038395}
   PopUp: {fileID: 0}
+  _order: {fileID: 0}
   _pickedUp: 0
 --- !u!1 &8558397205040038395
 GameObject:
@@ -561,7 +562,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2409072141380779730
 MonoBehaviour:
